@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mpothen1/MoCo-Frontend-#readme",
   "dependencies": {
+    "bulma": "^0.9.3",
     "express": "^4.18.0"
   }
 }
