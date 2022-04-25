@@ -1,0 +1,22 @@
+{
+  "name": "moco-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mpothen1/MoCo-Frontend-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mpothen1/MoCo-Frontend-/issues"
+  },
+  "homepage": "https://github.com/mpothen1/MoCo-Frontend-#readme",
+  "dependencies": {
+    "express": "^4.18.0"
+  }
+}
