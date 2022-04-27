@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx run server.js"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,6 @@
     "connect-livereload": "^0.6.1",
     "dotenv": "^16.0.0",
     "express": "^4.18.0",
-    "fs": "^0.0.1-security",
-    "http": "^0.0.1-security",
     "livereload": "^0.9.3",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
