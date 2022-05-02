@@ -5,7 +5,9 @@ const router = express.Router();
 const connectStr = process.env.DATABASE_URL;
 const pool = new Pool({
     connectionString: connectStr,
-    ssl: true
+    ssl: {
+        rejectUnauthorized: false
+      }
 });
 
 router.get('/', (req, res) => {
@@ -13,14 +15,21 @@ router.get('/', (req, res) => {
   });
 
 router.get('/tfrecs', async (req, res) => {
-    try {
-        pool.query("SELECT * FROM tf_recs", (results) => {
-                res.json(results.rows);
-                });
-    } catch (err) {
-      console.log(err);
-      res.status(500).send('Server Error');
-    }
+    const tf_recs = await pool.query('SELECT * FROM tf_recs')
+    res.send(tf_recs.rows)
+    console.log(tf_recs.rows)
+  });
+
+  router.get('/mpaa', async (req, res) => {
+    const mpaa = await pool.query('SELECT * FROM mpaa')
+    res.send(mpaa.rows)
+    console.log(mpaa.rows)
+  });
+
+  router.get('/audit', async (req, res) => {
+    const audit = await pool.query('SELECT * FROM audit')
+    res.send(audit.rows)
+    console.log(audit.rows)
   });
 
   export default router;
