@@ -1,7 +1,8 @@
-const express = require('express')
-const reload = require('livereload')
-const dotenv = require('dotenv')
-const path = require('path')
+import express from 'express'
+import reload from 'livereload'
+import dotenv from 'dotenv'
+import path from 'path'
+import apiRoutes from './server/apiRoutes.js';
 
 dotenv.config();
 const dirname = path.resolve();
@@ -17,6 +18,8 @@ if (process.env.CONTEXT === 'development') {
 }
 
 app.use(express.static(staticFolder));
+
+app.use('/api', apiRoutes);
 
 async function bootServer() {
   try {
