@@ -20,16 +20,16 @@ router.get('/tfrecs', async (req, res) => {
     console.log(tf_recs.rows)
   });
 
-  router.get('/mpaa', async (req, res) => {
-    const mpaa = await pool.query('SELECT * FROM mpaa')
-    res.send(mpaa.rows)
-    console.log(mpaa.rows)
-  });
+router.get('/mpaa', async (req, res) => {
+  const mpaa = await pool.query('SELECT * FROM mpaa')
+  res.send(mpaa.rows)
+  console.log(mpaa.rows)
+});
 
-  router.get('/audit', async (req, res) => {
-    const audit = await pool.query('SELECT * FROM audit')
-    res.send(audit.rows)
-    console.log(audit.rows)
-  });
+router.get('/audit', async (req, res) => {
+  const audit = await pool.query('SELECT * FROM audit')
+  res.send(audit.rows)
+  console.log(audit.rows)
+});
 
-  export default router;
+export default router;
