@@ -4,6 +4,6 @@ h1 {
 
 .table{
     background-color: grey;
-    
-
+    align-self: center;
+    border: 2;
   }
