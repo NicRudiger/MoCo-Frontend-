@@ -14,6 +14,36 @@
         <button class="button is-link"><a href="index.html" class="mpaa has-text-white">RPS Task Force Recommendations</a></button>
         <button class="button is-link"><a href="audit.html" class="audit has-text-white">MCPD Audit</a></button>
         <button class="button is-link"><a href="mpaa.html" class="comment has-text-white">Maryland Police Accountability Act</a></button>
-        </div>
+    </div>
+        <p><strong>Select the table you wish to enter a comment on.</strong></p>
+        <div class="field">
+            <div class="control">
+              <label class="radio">
+                <input type="radio" name="table">
+                RPS Recommendations
+              </label>
+              <label class="radio">
+                <input type="radio" name="table">
+                Maryland Police Accountability Act
+              </label>
+              <label class="radio">
+                <input type="radio" name="table">
+                MCPD Audit
+              </label>
+            </div>
+            <label class="label">Recommendation ID</label>
+            <div class="control">
+              <input class="input" id="rec_id" type="text" placeholder="Text input">
+            </div>
+            <label class="label">Comment</label>
+            <div class="control">
+              <input class="input" id="comment" type="text" placeholder="Text input">
+            </div>
+          </div>
+        <div class="field">
+        <div class="control">
+            <button class="button is-link" id="submit">Submit</button>
+        </div>        
+    <script src="commentscript.js"></script>
 </body>
 </html>
