@@ -6,7 +6,7 @@ This repo contains the code for a HTML and CSS website that uses JavaScript for 
 1. Client folder: Stores HTML, CSS, and JavaScript files that are used on the frontend of the website.
 2. node_modules folder: Stores all modules used by the Node.js framework
 3. Server folder: Stores the routes that our backend API uses to convey data.
-4. READEME.me: Our readme file.
+4. README.me: Our readme file.
 5. package_lock.json: Defines all dependencies for our app.
 6. package.json: Defines topline dependencies and provides other information about our app.
 7. server.js: Used to initally boot the server and define the location of our API routes and other important files.
