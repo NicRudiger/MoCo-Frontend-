@@ -34,7 +34,11 @@
         >
       </button>
     </div>
-    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+    <div>
+    <input class="input" type="text" id="myInput" onkeyup="tableFilter()" placeholder="Search recommendation descriptions">
+    <input class="input" type="text" id="priInput" onkeyup="priFilter()" placeholder="Search priority levels">
+    </div>
+    <table class="table is-bordered is-striped is-hoverable is-fullwidth" id="table">
       <thead>
         <tr>
           <th>Action ID</th>
