@@ -1,19 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Silver Spring Justice Coalition Database</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
     <h1 class="is-size-2">Silver Spring Justice Coalition Database</h1>
     <div class="buttons">
-        <button class="button is-link"><a href="index.html" class="mpaa has-text-white">RPS Task Force Recommendations</a></button>
-        <button class="button is-link"><a href="audit.html" class="audit has-text-white">MCPD Audit</a></button>
-        <button class="button is-link"><a href="comment.html" class="comment has-text-white">Add a Comment</a></button>
-        </div>
-</body>
+      <button class="button is-link">
+        <a href="./index.html" class="mpaa has-text-white"
+          >RPS Task Force Recommendations</a
+        >
+      </button>
+      <button class="button is-link">
+        <a href="./audit.html" class="audit has-text-white">MCPD Audit</a>
+      </button>
+      <button class="button is-link">
+        <a href="./comment.html" class="comment has-text-white"
+          >Add a Comment</a
+        >
+      </button>
+    </div>
+    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+      <thead>
+        <tr>
+          <th>MPAA ID</th>
+          <th>Focus</th>
+          <th>Recommendations</th>
+          <th>Action</th>
+          <th>Parties</th>
+          <th>Progress</th>
+          <th>Timeline</th>
+          <th>Priority</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody class="mpaa_target"></tbody>
+      <tfoot>
+        <tr>
+          <th>MPAA ID</th>
+          <th>Focus</th>
+          <th>Recommendations</th>
+          <th>Action</th>
+          <th>Parties</th>
+          <th>Progress</th>
+          <th>Timeline</th>
+          <th>Priority</th>
+          <th>Comments</th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <script src="script.js"></script>
+  </body>
 </html>
