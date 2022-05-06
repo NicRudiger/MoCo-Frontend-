@@ -14,7 +14,7 @@ async function tfTable() {
       <td>${rec.progress}</td>
       <td>${rec.timeline}</td>
       <td>${rec.priority}</td>
-      <td>${rec.comments}</td>
+      <td>${rec.ssjc_comments}</td>
       `;
     tableBody.append(tableData);
   });
