@@ -29,11 +29,16 @@
         <a href="comment.html" class="comment has-text-white">Add a Comment</a>
       </button>
     </div>
-    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+    <div>
+      <label class = "label" for="myInput">Search by recommendation description</label>
+      <input class="input" type="text" id="myInput" onkeyup="tableFilter()">
+      <label class = "label" for="myInput">Search by focus area</label>
+      <input class="input" type="text" id="priInput" onkeyup="priFilter()">
+    </div>
+    <table class="table is-bordered is-striped is-hoverable is-fullwidth" id="table">
       <thead>
         <tr>
           <th>Audit ID</th>
-          <th>Action ID</th>
           <th>Focus</th>
           <th>Recommendations</th>
           <th>Action</th>
@@ -48,7 +53,6 @@
       <tfoot>
         <tr>
           <th>Audit ID</th>
-          <th>Action ID</th>
           <th>Focus</th>
           <th>Recommendations</th>
           <th>Action</th>

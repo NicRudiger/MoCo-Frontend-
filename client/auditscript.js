@@ -7,7 +7,6 @@ async function auditTable() {
     const tableData = document.createElement('tr');
       tableData.innerHTML = `
       <td>${rec.audit_id}</td>
-      <td>${rec.action_id}
       <td>${rec.focus_area}</td>
       <td>${rec.recommendations}</td>
       <td>${rec.action}</td>
@@ -21,4 +20,44 @@ async function auditTable() {
     });
   }
   
-  auditTable()
+auditTable()
+
+function tableFilter() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function priFilter() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("priInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("table");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}

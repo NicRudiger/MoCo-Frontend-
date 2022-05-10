@@ -29,7 +29,13 @@
         >
       </button>
     </div>
-    <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+    <div>
+      <label class = "label" for="myInput">Search by recommendation description</label>
+      <input class="input" type="text" id="myInput" onkeyup="tableFilter()">
+      <label class = "label" for="myInput">Search by priority level</label>
+      <input class="input" type="text" id="priInput" onkeyup="priFilter()">
+    </div>
+    <table class="table is-bordered is-striped is-hoverable is-fullwidth" id="table">
       <thead>
         <tr>
           <th>MPAA ID</th>
