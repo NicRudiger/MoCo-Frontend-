@@ -2,7 +2,7 @@ import express from 'express';
 import Pool from 'pg-pool';
 const router = express.Router();
 
-const connectStr = `postgres://caeltaetxhemre:fce0691b7d6c3ac33a16fd72ec7a4009ad74b3410385a6b75c488dc3ce39c157@ec2-34-194-158-176.compute-1.amazonaws.com:5432/de09islg90c56t`
+const connectStr = process.env.DATABASE_URL
 const pool = new Pool({
     connectionString: connectStr,
     ssl: {
