@@ -8,12 +8,11 @@ document.getElementById('submit').addEventListener('click', (event) => {
   async function handleButtonSubmit() {
     const user_pass = prompt("Enter your password to add a comment");
     if (user_pass == password) {
-        const rec_id = document.getElementById('rec_id');
-        const comment = document.getElementById('comment');
-        console.log(rec_id.value)
-        console.log(comment.value)
+        const rec_id = document.getElementById('rec_id').value;
+        const comment = document.getElementById('comment').value;
+        const rec_comment = await fetch(`/api/tfrecs/${rec_id}/${comment}`)
+        alert("Comment successfully added")
     } else {
         alert("Incorrect password. Please try again");
     }
-
 }
