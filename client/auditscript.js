@@ -15,6 +15,7 @@ async function auditTable() {
       <td>${rec.timeline}</td>
       <td>${rec.priority_level}</td>
       <td>${rec.ssjc_comments}</td>
+      <td><input type="checkbox" id=${rec.audit_id}></td>
       `;
       tableBody.append(tableData);
     });
@@ -54,6 +55,24 @@ function priFilter() {
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function checkFilter() {
+  var table, tr, td, i;
+  table = document.getElementById("table");
+  tr = table.getElementsByTagName("tr");
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[9];
+    if (td) {
+      const check = document.getElementById(i);  
+      if (check.checked == true) {
         tr[i].style.display = "";
       } else {
         tr[i].style.display = "none";

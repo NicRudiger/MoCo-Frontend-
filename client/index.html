@@ -39,6 +39,7 @@
       <input class="input" type="text" id="myInput" onkeyup="tableFilter()">
       <label class = "label" for="myInput">Search by priority level</label>
       <input class="input" type="text" id="priInput" onkeyup="priFilter()">
+      <button class="button is-warning" onclick="checkFilter()">View only selected rows</button>
     </div>
     <table class="table is-bordered is-striped is-hoverable is-fullwidth" id="table">
       <thead>
@@ -52,6 +53,7 @@
           <th>Timeline</th>
           <th>Priority</th>
           <th>Comments</th>
+          <th>Selected?</th>
         </tr>
       </thead>
       <tbody class="target"></tbody>
@@ -66,6 +68,7 @@
           <th>Timeline</th>
           <th>Priority</th>
           <th>Comments</th>
+          <th>Selected?</th>
         </tr>
       </tfoot>
     </table>
