@@ -34,10 +34,31 @@
       </button>
     </div>
     <div>
-      <label class = "label" for="myInput">Search by recommendation description</label>
-      <input class="input" type="text" id="myInput" onkeyup="tableFilter()">
-      <label class = "label" for="myInput">Search by focus area</label>
-      <input class="input" type="text" id="priInput" onkeyup="priFilter()">
+      <label class = "label" for="query">Select column to search</label>
+      <div class="control" id="query">
+        <label class="radio">
+          <input type="radio" name="query" value="Focus">
+          Focus Area
+        </label>
+        <label class="radio">
+          <input type="radio" name="query" value="Recommendation">
+          Recommendation
+        </label>
+        <label class="radio">
+          <input type="radio" name="query" value="Timeline">
+          Timeline
+        </label>
+        <label class="radio">
+          <input type="radio" name="query" value="Priority">
+          Priority Level
+        </label>
+        <label class="radio">
+          <input type="radio" name="query" value="Comments">
+          Comments
+        </label>
+      </div>
+      <label class = "label" for="myInput">Enter search query</label>
+      <input class="input" type="text" id="myInput" onkeyup="queryHandle()">
       <button class="button is-warning" onclick="checkFilter()">View only selected rows</button>
     </div>
     <table class="table is-bordered is-striped is-hoverable is-fullwidth" id="table">
