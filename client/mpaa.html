@@ -27,9 +27,9 @@
       <button class="button is-link">
         <a href="./audit.html" class="audit has-text-white">MCPD Audit</a>
       </button>
-      <button class="button is-link">
+      <button class="button is-danger">
         <a href="./comment.html" class="comment has-text-white"
-          >Add a Comment</a
+          >Add a comment (Password required)</a
         >
       </button>
     </div>
@@ -59,7 +59,10 @@
       </div>
       <label class = "label" for="myInput">Enter search query</label>
       <input class="input" type="text" id="myInput" onkeyup="queryHandle()">
-      <button class="button is-warning" onclick="checkFilter()">View only selected rows</button>
+      <div class="buttons">
+        <button class="button is-warning" onclick="checkFilter()">View only selected rows</button>
+        <button class="button is-danger" onclick="viewComments()">View comments (password required)</button>
+      </div>
     </div>
     <table class="table is-bordered is-striped is-hoverable is-fullwidth" id="table">
       <thead>
@@ -72,8 +75,8 @@
           <th>Progress</th>
           <th>Timeline</th>
           <th>Priority</th>
-          <th>Comments</th>
           <th>Selected?</th>
+          <th id="commentA" style="display:none">Comments</th>
         </tr>
       </thead>
       <tbody class="mpaa_target"></tbody>
@@ -87,8 +90,8 @@
           <th>Progress</th>
           <th>Timeline</th>
           <th>Priority</th>
-          <th>Comments</th>
           <th>Selected?</th>
+          <th id="commentB" style="display:none">Comments</th>
         </tr>
       </tfoot>
     </table>

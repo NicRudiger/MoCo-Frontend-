@@ -14,8 +14,8 @@ async function tfTable() {
       <td>${rec.progress}</td>
       <td>${rec.timeline}</td>
       <td>${rec.priority}</td>
-      <td>${rec.ssjc_comments}</td>
       <td><input type="checkbox" id=${rec.action_id}></td>
+      <td id="comment${rec.action_id}" style="display:none">${rec.ssjc_comments}</td>
       `;
     tableBody.append(tableData);
   });
@@ -126,7 +126,7 @@ function comFilter() {
   tr = table.getElementsByTagName("tr");
 
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[8];
+    td = tr[i].getElementsByTagName("td")[9];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -144,7 +144,7 @@ function checkFilter() {
   tr = table.getElementsByTagName("tr");
 
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[9];
+    td = tr[i].getElementsByTagName("td")[8];
     if (td) {
       const check = document.getElementById(i);  
       if (check.checked == true) {
@@ -153,5 +153,20 @@ function checkFilter() {
         tr[i].style.display = "none";
       }
     }
+  }
+}
+
+function viewComments() {
+  const password = "SSJC@2022";
+  const user_pass = prompt("Enter your password to view comments");
+  if (user_pass == password) {
+    const tr = table.getElementsByTagName("tr");
+    document.querySelector("#commentA").style.display = null;
+    document.querySelector("#commentB").style.display = null;
+    for (i = 1; i < tr.length-1; i++) {
+        document.querySelector(`#comment${i}`).style.display = null;
+    }
+  }else{
+    alert("Incorrect password. Please try again");
   }
 }
