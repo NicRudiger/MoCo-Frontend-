@@ -1,18 +1,23 @@
 export default (sequelize, types) => {
-  const mcpd_audit = sequelize.define('mcpd_audit', {
-    audit_id: {
+  const mpaa_history = sequelize.define('mpaa_history', {
+    history_id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
     },
-    action_id: {
+    history_date: {
+      type: types.DATE,
+      allowNull: false,
+    },
+    mpaa_id: {
       type: types.INTEGER,
+      allowNull: false,
     },
     focus_area: {
       type: types.STRING,
     },
-    recommendations: {
+    rps_rec: {
       type: types.STRING,
     },
     action: {
@@ -32,5 +37,5 @@ export default (sequelize, types) => {
     },
   });
 
-  return mcpd_audit;
+  return mpaa_history;
 };

@@ -1,6 +1,16 @@
 export default (sequelize, types) => {
-  const mcpd_audit = sequelize.define('mcpd_audit', {
-    audit_id: {
+  const tf_recs_history = sequelize.define('tf_recs_history', {
+    history_id: {
+      type: types.INTEGER,
+      allowNull: false,
+      unique: true,
+      primaryKey: true,
+    },
+    history_date: {
+      type: types.DATE,
+      allowNull: false,
+    },
+    rec_id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,
@@ -12,7 +22,7 @@ export default (sequelize, types) => {
     focus_area: {
       type: types.STRING,
     },
-    recommendations: {
+    tf_rec: {
       type: types.STRING,
     },
     action: {
@@ -32,5 +42,5 @@ export default (sequelize, types) => {
     },
   });
 
-  return mcpd_audit;
+  return tf_recs_history;
 };

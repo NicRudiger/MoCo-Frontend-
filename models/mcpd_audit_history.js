@@ -1,10 +1,19 @@
 export default (sequelize, types) => {
-  const mcpd_audit = sequelize.define('mcpd_audit', {
-    audit_id: {
+  const mcpd_audit_history = sequelize.define('mcpd_audit_history', {
+    history_id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
+    },
+    history_date: {
+      type: types.DATE,
+      allowNull: false,
+    },
+    audit_id: {
+      type: types.INTEGER,
+      allowNull: false,
+      unique: true,
     },
     action_id: {
       type: types.INTEGER,
@@ -32,5 +41,5 @@ export default (sequelize, types) => {
     },
   });
 
-  return mcpd_audit;
+  return mcpd_audit_history;
 };
