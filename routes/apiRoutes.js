@@ -20,4 +20,19 @@ router.get('/mcpd_audit', async (req, res) => {
   }
 });
 
+// Fetch all rows from 'mcpd_audit_history' table that have the given 'audit_id'
+router.get('/mcpd_audit_history/:audit_id', async (req, res) => {
+  try {
+    const data = await db.mcpd_audit_history.findAll({
+      where: {
+        audit_id: req.params.audit_id,
+      },
+    });
+    res.json(data);
+  } catch (e) {
+    console.error(e);
+    res.send('Error in GET /mcpd_audit_history');
+  }
+});
+
 export default router;
