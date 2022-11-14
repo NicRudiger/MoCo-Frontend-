@@ -1,3 +1,14 @@
+/*
+This script imports all other models into a single namespace. This means other
+scripts only have to import this script to access all of the below models.
+
+Models are an abstraction in Sequelize which provides a mapping between the
+tables of a SQL database and specific JavaScript objects.
+
+For technical information, see the Sequelize documentation:
+https://sequelize.org/docs/v6/core-concepts/model-basics/
+*/
+
 import mcpd_audit from './mcpd_audit.js';
 import mcpd_audit_comments from './mcpd_audit_comments.js';
 import mcpd_audit_history from './mcpd_audit_history.js';
