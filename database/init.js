@@ -1,4 +1,5 @@
 import Sequelize from 'sequelize';
+import process from 'process';
 
 import config from './config.js';
 import models from '../models/index.js';

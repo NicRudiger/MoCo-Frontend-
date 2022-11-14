@@ -1,4 +1,5 @@
-import express from 'express'
+import express from 'express';
+import process from 'process';
 
 import apiRoutes from './routes/apiRoutes.js';
 
