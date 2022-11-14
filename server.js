@@ -20,8 +20,8 @@ async function bootServer() {
     app.listen(port, async () => {
       console.log(`Listening on: http//localhost:${port}`);
     });
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    console.log(e);
   }
 }
 
