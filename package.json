@@ -16,5 +16,10 @@
     "nodemon": "^2.0.20",
     "sequelize": "^6.25.5",
     "sequelize-cli": "^6.5.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "prettier": "^2.7.1"
+  },
   }
 }
