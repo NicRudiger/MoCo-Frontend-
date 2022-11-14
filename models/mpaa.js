@@ -1,3 +1,7 @@
+/**
+ * Model for 'mpaa' table
+ */
+
 export default (sequelize, types) => {
   const mpaa = sequelize.define('mpaa', {
     mpaa_id: {

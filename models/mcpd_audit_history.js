@@ -1,3 +1,7 @@
+/**
+ * Model for 'mcpd_audit_history' table
+ */
+
 export default (sequelize, types) => {
   const mcpd_audit_history = sequelize.define('mcpd_audit_history', {
     history_id: {

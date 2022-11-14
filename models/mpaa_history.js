@@ -1,3 +1,7 @@
+/**
+ * Model for 'mpaa_history' table
+ */
+
 export default (sequelize, types) => {
   const mpaa_history = sequelize.define('mpaa_history', {
     history_id: {

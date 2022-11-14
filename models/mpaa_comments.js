@@ -1,3 +1,7 @@
+/**
+ * Model for 'mpaa_comments' table
+ */
+
 export default (sequelize, types) => {
   const mpaa_comments = sequelize.define('mpaa_comments', {
     comment_id: {

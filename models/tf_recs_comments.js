@@ -1,3 +1,7 @@
+/**
+ * Model for 'tf_recs_comments' table
+ */
+
 export default (sequelize, types) => {
   const tf_recs_comments = sequelize.define('tf_recs_comments', {
     comment_id: {

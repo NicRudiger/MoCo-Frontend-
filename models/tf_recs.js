@@ -1,3 +1,7 @@
+/**
+ * Model for 'tf_recs' table
+ */
+
 export default (sequelize, types) => {
   const tf_recs = sequelize.define('tf_recs', {
     rec_id: {
