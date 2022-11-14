@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 
 import config from './config.js';
-import models from '../models/index.js'
+import models from '../models/index.js';
 
 const env = process.env.ENVIRONMENT || 'development';
 const opts = config[env];
