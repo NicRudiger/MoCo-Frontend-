@@ -3,10 +3,10 @@ import process from 'process';
 
 import apiRoutes from './routes/apiRoutes.js';
 
-const app = express();
-
 const port = process.env.PORT || 3000;
 const staticFolder = 'client';
+
+const app = express();
 
 // Serve static website files
 app.use(express.static(staticFolder));
