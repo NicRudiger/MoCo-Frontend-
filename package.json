@@ -1,5 +1,5 @@
 {
-  "name": "moco-website",
+  "name": "moco-rps-dashboard",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,27 +8,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mpothen1/MoCo-Frontend-.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mpothen1/MoCo-Frontend-/issues"
-  },
-  "homepage": "https://github.com/mpothen1/MoCo-Frontend-#readme",
   "dependencies": {
-    "connect-livereload": "^0.6.1",
-    "dotenv": "^16.0.0",
-    "express": "^4.18.0",
-    "livereload": "^0.9.3",
+    "express": "^4.18.2",
     "mysql2": "^2.3.3",
-    "nodemon": "^2.0.15",
-    "path": "^0.12.7",
-    "pg": "^8.7.3",
-    "require": "^0.4.9",
-    "sequelize": "^6.19.0",
-    "sequelize-cli": "^6.4.1"
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.25.5",
+    "sequelize-cli": "^6.5.2"
   }
 }
