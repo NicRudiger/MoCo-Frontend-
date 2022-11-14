@@ -14,7 +14,7 @@ app.use(express.static(staticFolder));
 // Import API routes
 app.use('/api', apiRoutes);
 
-// Define function which starts NodeJs server
+// Define function which starts Nodejs server
 async function bootServer() {
   try {
     app.listen(port, async () => {
@@ -25,5 +25,5 @@ async function bootServer() {
   }
 }
 
-// Start NodeJs server
+// Start Nodejs server
 bootServer();
