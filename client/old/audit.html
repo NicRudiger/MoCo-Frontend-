@@ -9,8 +9,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
@@ -30,42 +32,57 @@
         >
       </button>
       <button class="button is-danger">
-        <a href="comment.html" class="comment has-text-white">Add a comment (Password required)</a>
+        <a href="comment.html" class="comment has-text-white"
+          >Add a comment (Password required)</a
+        >
       </button>
     </div>
     <div>
-      <label class = "label" for="query">Select a column to search</label>
+      <label class="label" for="query">Select a column to search</label>
       <div class="control" id="query">
         <label class="radio">
-          <input type="radio" name="query" value="Focus">
+          <input type="radio" name="query" value="Focus" />
           Focus Area
         </label>
         <label class="radio">
-          <input type="radio" name="query" value="Recommendation">
+          <input type="radio" name="query" value="Recommendation" />
           Recommendations
         </label>
         <label class="radio">
-          <input type="radio" name="query" value="Timeline">
+          <input type="radio" name="query" value="Timeline" />
           Timeline
         </label>
         <label class="radio">
-          <input type="radio" name="query" value="Priority">
+          <input type="radio" name="query" value="Priority" />
           Priority Level
         </label>
         <label class="radio">
-          <input type="radio" name="query" value="Comments">
+          <input type="radio" name="query" value="Comments" />
           Comments
         </label>
       </div>
-      <label class = "label" for="myInput">Enter search query</label>
-      <input class="input" type="text" id="myInput" onkeyup="queryHandle()">
-      <p><b><i>Query Focus Areas:</i> Use of Force & Internal Affairs, Mental Health Response, MCPD Education & Training, Recruitment & Hiring Practices, and Early Warning & Intervention System.</b></p>
+      <label class="label" for="myInput">Enter search query</label>
+      <input class="input" type="text" id="myInput" onkeyup="queryHandle()" />
+      <p>
+        <b
+          ><i>Query Focus Areas:</i> Use of Force & Internal Affairs, Mental
+          Health Response, MCPD Education & Training, Recruitment & Hiring
+          Practices, and Early Warning & Intervention System.</b
+        >
+      </p>
       <div class="buttons">
-        <button class="button is-warning" onclick="checkFilter()">View only selected rows</button>
-        <button class="button is-danger" onclick="viewComments()">View comments (password required)</button>
+        <button class="button is-warning" onclick="checkFilter()">
+          View only selected rows
+        </button>
+        <button class="button is-danger" onclick="viewComments()">
+          View comments (password required)
+        </button>
       </div>
     </div>
-    <table class="table is-bordered is-striped is-hoverable is-fullwidth" id="table">
+    <table
+      class="table is-bordered is-striped is-hoverable is-fullwidth"
+      id="table"
+    >
       <thead>
         <tr>
           <th>Audit ID</th>
@@ -77,7 +94,7 @@
           <th>Timeline</th>
           <th>Priority</th>
           <th>Selected?</th>
-          <th id="commentA" style="display:none">Comments</th>
+          <th id="commentA" style="display: none">Comments</th>
         </tr>
       </thead>
       <tbody class="audit_target"></tbody>
@@ -92,7 +109,7 @@
           <th>Timeline</th>
           <th>Priority</th>
           <th>Selected?</th>
-          <th id="commentB" style="display:none">Comments</th>
+          <th id="commentB" style="display: none">Comments</th>
         </tr>
       </tfoot>
     </table>
