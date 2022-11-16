@@ -1,34 +1,29 @@
-import express from 'express'
-import reload from 'livereload'
-import dotenv from 'dotenv'
-import path from 'path'
-import apiRoutes from './server/apiRoutes.js';
+import express from 'express';
+import process from 'process';
 
-dotenv.config();
-const dirname = path.resolve();
+import apiRoutes from './routes/apiRoutes.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+
+const port = process.env.PORT || 3000;
 const staticFolder = 'client';
-let liveReloadServer;
 
-if (process.env.CONTEXT === 'development') {
-  liveReloadServer = reload.createServer();
-  liveReloadServer.watch(path.join(dirname, staticFolder));
-}
-
+// Serve static website files
 app.use(express.static(staticFolder));
 
+// Import API routes
 app.use('/api', apiRoutes);
 
+// Define function which starts Nodejs server
 async function bootServer() {
   try {
-    app.listen(PORT, async () => {
-      console.log(`Listening on: http//localhost:${PORT}`);
+    app.listen(port, async () => {
+      console.log(`Listening on: http//localhost:${port}`);
     });
-  } catch (err) {
-    console.log(err);
+  } catch (e) {
+    console.log(e);
   }
 }
 
+// Start Nodejs server
 bootServer();
