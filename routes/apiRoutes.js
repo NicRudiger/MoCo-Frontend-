@@ -35,4 +35,26 @@ router.get('/mcpd_audit_history/:audit_id', async (req, res) => {
   }
 });
 
+// Fetch all rows from 'mpaa' table
+router.get('/mpaa', async (req, res) => {
+  try {
+    const data = await db.mpaa.findAll();
+    res.json(data);
+  } catch (e) {
+    console.error(e);
+    res.send('Error in GET /mpaa');
+  }
+});
+
+// Fetch all rows from 'tf_recs' table
+router.get('/tf_recs', async (req, res) => {
+  try {
+    const data = await db.tf_recs.findAll();
+    res.json(data);
+  } catch (e) {
+    console.error(e);
+    res.send('Error in GET /tf_recs');
+  }
+});
+
 export default router;
