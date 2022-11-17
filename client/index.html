@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Public Safety Dashboard</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -12,13 +12,14 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <script src="js/main.js" type="module"></script>
   </head>
   <body>
     <div class="hero is-small">
       <div class="hero-body">
         <div class="container has-text-centered">
-          <p class="title is-1 is-spaced">[title]</p>
-          <p class="subtitle">[subtitle]</p>
+          <p class="title is-1 is-spaced">Public Safety Dashboard</p>
+          <p id="view-label" class="subtitle"></p>
         </div>
       </div>
       <div class="hero-foot">
@@ -30,18 +31,21 @@
     <div class="section">
       <div class="container is-flex justify-content-between">
         <!-- TODO: Use `disabled` boolean attribute to disable current button -->
-        <button class="button is-primary button-word-wrap">
+        <button id="tf-recs-nav" class="button is-primary button-word-wrap">
           RPS Task Force Recommendations
         </button>
-        <button class="button is-primary button-word-wrap">
+        <button id="mpaa-nav" class="button is-primary button-word-wrap">
           Maryland Police Accountability Act
         </button>
-        <button class="button is-primary button-word-wrap">MCPD Audit</button>
+        <button id="mcpd-audit-nav" class="button is-primary button-word-wrap">
+          MCPD Audit
+        </button>
       </div>
     </div>
     <div class="section">
+      <!-- TODO: Make table wider -->
       <div class="column is-one-third is-offset-one-third">
-        <input id="search" type="text" class="input" placeholder="Search" />
+        <input type="text" class="input" placeholder="Search" />
       </div>
     </div>
     <div class="section">
