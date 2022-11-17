@@ -22,6 +22,7 @@ export function populateTableHeaders(table, labels) {
 // Populate the body of an HTML with JSON data
 export function populateTableBody(table, data) {
   const body = table.querySelector('tbody');
+  body.innerHTML = '';
   data.forEach((row) => {
     const rowHTML = [];
     Object.keys(row).forEach((field) => {
@@ -31,12 +32,17 @@ export function populateTableBody(table, data) {
   });
 }
 
-export function searchAll(data) {
+// Search for term across all rows and fields of a dataset
+export function searchRows(query, data) {
   const results = [];
   data.forEach((row) => {
-    console.debug(`Searching key: ${row}`);
-    row.forEach((field) => {
-      console.debug(`Searching field: ${field}`);
+    Object.keys(row).every((key) => {
+      const field = row[key];
+      if (String(field).includes(query)) {
+        results.push(row);
+        return false;
+      }
+      return true;
     });
   });
   return results;

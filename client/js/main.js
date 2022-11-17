@@ -51,15 +51,17 @@ const views = {
   },
 };
 
+// Get view from URL parameters
 function getView() {
   return utils.getURLParams().get('v');
 }
 
+// Reload the page with the specified view
 function setView(view) {
   location.search = `v=${view}`;
 }
 
-async function loadView(view) {
+async function loadView(view, data = {}) {
   console.debug(`Loading view: ${view.label}`);
   // Update page heading to reflect current view
   const viewLabel = document.querySelector('#view-label');
@@ -69,7 +71,9 @@ async function loadView(view) {
   navButton.setAttribute('disabled', '');
   // Populate html table with data
   const table = document.querySelector('#data');
-  const data = await utils.getData(view.endpoint);
+  if (data.length == 0) {
+    data = await utils.getData(view.endpoint);
+  }
   utils.populateTableHeaders(table, view.columns);
   utils.populateTableBody(table, data);
 }
@@ -81,11 +85,30 @@ async function main() {
     button.addEventListener('click', () => setView(key));
   });
 
-  let view = getView();
-  if (Object.keys(views).indexOf(view) == -1) {
-    view = default_view;
+  // Load the requested view, falling back on the default if necessary
+  let viewID = getView();
+  if (Object.keys(views).indexOf(viewID) == -1) {
+    viewID = default_view;
   }
-  loadView(views[view]);
+  const view = views[viewID];
+  const data = await utils.getData(view.endpoint);
+  loadView(view, data);
+
+  // Add search functionality to searchbar
+  const table = document.querySelector('#data');
+  const search = document.querySelector('#search');
+  search.addEventListener('keypress', (e) => {
+    const query = search.value;
+    if (e.key == 'Enter') {
+      console.debug(`Searching: '${query}'`);
+      if (query.length > 0) {
+        const cData = utils.searchRows(query, data);
+        utils.populateTableBody(table, cData);
+      } else {
+        utils.populateTableBody(table, data);
+      }
+    }
+  });
 }
 
 // When the page has finished loading, execute the main() function
