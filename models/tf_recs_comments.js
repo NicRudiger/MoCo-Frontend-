@@ -10,7 +10,7 @@ export default (sequelize, types) => {
       unique: true,
       primaryKey: true,
     },
-    audit_id: {
+    tf_recs_id: {
       type: types.INTEGER,
       allowNull: false,
     },

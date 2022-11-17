@@ -14,7 +14,7 @@ export default (sequelize, types) => {
       type: types.DATE,
       allowNull: false,
     },
-    rec_id: {
+    tf_recs_id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,
