@@ -10,7 +10,7 @@ export function getURLParams() {
   return new URLSearchParams(window.location.search);
 }
 
-// Populate the headers of an HTML table with labels
+// Populate the headers of an HTML table with the given labels
 export function populateTableHeaders(table, labels) {
   const headers = table.querySelector('thead > tr');
   headers.innerHTML = '';
@@ -19,7 +19,7 @@ export function populateTableHeaders(table, labels) {
   });
 }
 
-// Populate the body of an HTML with JSON data
+// Populate the body of an HTML table with JSON data
 export function populateTableBody(table, data) {
   const body = table.querySelector('tbody');
   body.innerHTML = '';
@@ -37,8 +37,7 @@ export function searchRows(query, data) {
   const results = [];
   data.forEach((row) => {
     Object.keys(row).every((key) => {
-      const field = row[key];
-      if (String(field).includes(query)) {
+      if (String(row[key]).includes(query)) {
         results.push(row);
         return false;
       }

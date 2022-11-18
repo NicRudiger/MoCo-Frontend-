@@ -57,57 +57,66 @@ function getView() {
 }
 
 // Reload the page with the specified view
-function setView(view) {
+function loadView(view) {
   location.search = `v=${view}`;
 }
 
-async function loadView(view, data = {}) {
-  console.debug(`Loading view: ${view.label}`);
+async function main() {
+  const search = document.querySelector('#search');
+  const table = document.querySelector('#data');
+
+  /**
+   * Populate HTML template with current view
+   */
+  // Use requested view, falling back on the default if necessary
+  let viewID = getView();
+  if (Object.keys(views).indexOf(viewID) == -1) {
+    viewID = default_view;
+  }
+  const view = views[viewID];
   // Update page heading to reflect current view
   const viewLabel = document.querySelector('#view-label');
   viewLabel.innerHTML = view.label;
   // Disable navigation button for current view
   const navButton = document.querySelector(`#${view.prefix}-nav`);
   navButton.setAttribute('disabled', '');
-  // Populate html table with data
-  const table = document.querySelector('#data');
-  if (data.length == 0) {
-    data = await utils.getData(view.endpoint);
-  }
+  // Populate HTML table with data
+  const data = await utils.getData(view.endpoint);
   utils.populateTableHeaders(table, view.columns);
   utils.populateTableBody(table, data);
-}
 
-async function main() {
-  // Add click action to view navigation buttons
+  /**
+   * Add functionality to view navigation buttons
+   */
   Object.keys(views).forEach((key) => {
     const button = document.querySelector(`#${views[key].prefix}-nav`);
-    button.addEventListener('click', () => setView(key));
+    button.addEventListener('click', () => loadView(key));
   });
 
-  // Load the requested view, falling back on the default if necessary
-  let viewID = getView();
-  if (Object.keys(views).indexOf(viewID) == -1) {
-    viewID = default_view;
-  }
-  const view = views[viewID];
-  const data = await utils.getData(view.endpoint);
-  loadView(view, data);
-
-  // Add search functionality to searchbar
-  const table = document.querySelector('#data');
-  const search = document.querySelector('#search');
-  search.addEventListener('keypress', (e) => {
+  /**
+   * Add filtering functionality to search bar.
+   * The search logic is as follows:
+   *   1. If query is blank return the entire dataset, as we want all rows in
+   *      dataset to be displayed.
+   *   2. If query is a substring of the previous query (e.g., 'th' -> 'the')
+   *      the new results must be a subset of the previous results.
+   *   3. If either of the above conditions are true, search the entire dataset,
+   *      as there is no way to narrow down the results list prior to actually
+   *      searching it.
+   */
+  let pQuery = '';
+  let results = data;
+  search.addEventListener('keyup', () => {
     const query = search.value;
-    if (e.key == 'Enter') {
-      console.debug(`Searching: '${query}'`);
-      if (query.length > 0) {
-        const cData = utils.searchRows(query, data);
-        utils.populateTableBody(table, cData);
-      } else {
-        utils.populateTableBody(table, data);
-      }
+    if (query == '') {
+      results = data;
+    } else if (query.includes(pQuery) && pQuery != '') {
+      results = utils.searchRows(query, results);
+    } else {
+      results = utils.searchRows(query, data);
     }
+    pQuery = query;
+    utils.populateTableBody(table, results);
   });
 }
 
