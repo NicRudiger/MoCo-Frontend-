@@ -61,6 +61,8 @@ function loadView(view) {
   location.search = `v=${view}`;
 }
 
+// function applyView(view, table, data = {}) {}
+
 async function main() {
   const search = document.querySelector('#search');
   const table = document.querySelector('#data');
@@ -98,7 +100,7 @@ async function main() {
    * The search logic is as follows:
    *   1. If query is blank return the entire dataset, as we want all rows in
    *      dataset to be displayed.
-   *   2. If query is a substring of the previous query (e.g., 'th' -> 'the')
+   *   2. If the previous query is a substring of query (e.g., 'th' -> 'the')
    *      the new results must be a subset of the previous results.
    *   3. If either of the above conditions are true, search the entire dataset,
    *      as there is no way to narrow down the results list prior to actually
