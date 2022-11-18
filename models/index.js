@@ -2,8 +2,9 @@
  * This script imports all other models into a single namespace. This means other
  * scripts only have to import this script to access all of the below models.
  *
- * Models are an abstraction in Sequelize which provides a mapping between the
- * tables of a SQL database and specific JavaScript objects.
+ * Sequelize models are an abstraction which maps the tables of a SQL database
+ * to specific JavaScript objects, producing a standard syntax for executing
+ * queries.
  *
  * For technical information, see the Sequelize documentation:
  * https://sequelize.org/docs/v6/core-concepts/model-basics/
