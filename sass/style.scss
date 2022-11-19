@@ -1,0 +1,13 @@
+@import '../node_modules/bulma/sass/utilities/initial-variables.sass';
+
+// Override Bulma variables
+$primary: #0d6efd;
+
+// TODO: Import only what is needed
+@import '../node_modules/bulma/bulma.sass';
+
+.button-word-wrap {
+  width: 33%;
+  height: auto;
+  white-space: normal;
+}
