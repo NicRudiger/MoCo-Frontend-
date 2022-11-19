@@ -75,25 +75,36 @@ async function main() {
   if (Object.keys(views).indexOf(viewID) == -1) {
     viewID = default_view;
   }
-  const view = views[viewID];
+  const currentView = views[viewID];
   // Update page heading to reflect current view
   const viewLabel = document.querySelector('#view-label');
-  viewLabel.innerHTML = view.label;
-  // Disable navigation button for current view
-  const navButton = document.querySelector(`#${view.prefix}-nav`);
-  navButton.setAttribute('disabled', '');
-  // Populate HTML table with data
-  const data = await utils.getData(view.endpoint);
-  utils.populateTableHeaders(table, view.columns);
-  utils.populateTableBody(table, data);
+  viewLabel.innerHTML = currentView.label;
 
   /**
-   * Add functionality to view navigation buttons
+   * Configure view navigation buttons
    */
+  // Populate buttons with view labels, disabling the current view button
+  Object.keys(views).forEach((key) => {
+    const view = views[key];
+    const id = `#${view.prefix}-nav`;
+    const nav = document.querySelector(id);
+    if (nav != null) {
+      nav.innerHTML = view.label;
+      if (view === currentView) {
+        nav.setAttribute('disabled', '');
+      }
+    }
+  });
+  // Add navigation functionality to buttons
   Object.keys(views).forEach((key) => {
     const button = document.querySelector(`#${views[key].prefix}-nav`);
     button.addEventListener('click', () => loadView(key));
   });
+
+  // Populate HTML table with data
+  const data = await utils.getData(currentView.endpoint);
+  utils.populateTableHeaders(table, currentView.columns);
+  utils.populateTableBody(table, data);
 
   /**
    * Add filtering functionality to search bar.
