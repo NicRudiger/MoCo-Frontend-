@@ -3,11 +3,20 @@
 // Override Bulma variables
 $primary: #0d6efd;
 
-// TODO: Import only what is needed
-@import '../node_modules/bulma/bulma.sass';
-
 .button-word-wrap {
   width: 33%;
   height: auto;
   white-space: normal;
 }
+
+/**
+ * Import only what is needed from Bulma, reducing filesize of final CSS.
+ * See 'node_modules/bulma/bulma.sass' for per-directory import order.
+ */
+@import '../node_modules/bulma/sass/utilities/_all.sass';
+@import '../node_modules/bulma/sass/base/_all.sass';
+@import '../node_modules/bulma/sass/elements/_all.sass';
+@import '../node_modules/bulma/sass/form/shared.sass';
+@import '../node_modules/bulma/sass/form/input-textarea.sass';
+@import '../node_modules/bulma/sass/helpers/_all.sass';
+@import '../node_modules/bulma/sass/layout/_all.sass';
