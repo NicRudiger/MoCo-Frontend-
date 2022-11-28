@@ -46,6 +46,21 @@ router.get('/mpaa', async (req, res) => {
   }
 });
 
+// Fetch all rows from 'mpaa_history' table that have the given 'mpaa_id'
+router.get('/mpaa_history/:mpaa_id', async (req, res) => {
+  try {
+    const data = await db.mpaa_history.findAll({
+      where: {
+        mpaa_id: req.params.mpaa_id,
+      },
+    });
+    res.json(data);
+  } catch (e) {
+    console.error(e);
+    res.send('Error in GET /mpaa_history');
+  }
+});
+
 // Fetch all rows from 'tf_recs' table
 router.get('/tf_recs', async (req, res) => {
   try {
@@ -54,6 +69,45 @@ router.get('/tf_recs', async (req, res) => {
   } catch (e) {
     console.error(e);
     res.send('Error in GET /tf_recs');
+  }
+});
+
+// Fetch all rows from 'tf_recs_history' table that have the given 'tf_recs_id'
+router.get('/tf_recs_history/:tf_recs_id', async (req, res) => {
+  try {
+    const data = await db.tf_recs_history.findAll({
+      where: {
+        tf_recs_id: req.params.tf_recs_id,
+      },
+    });
+    res.json(data);
+  } catch (e) {
+    console.error(e);
+    res.send('Error in GET /tf_recs_history');
+  }
+});
+
+// Insert new comment into one of the comments tables
+router.post('/comment', async (req, res) => {
+  try {
+    console.log(req.body);
+    const table = req.body.table;
+    const id = req.body.id;
+    const name = req.body.name;
+    const body = req.body.body;
+
+    if (table == 'mcpd_audit') {
+      await db.mcpd_audit_comments.create({
+        audit_id: id,
+        name: name,
+        body: body,
+      });
+    }
+
+    res.sendStatus(200);
+  } catch (e) {
+    console.error(e);
+    res.send('Error in POST /comment');
   }
 });
 

@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import express from 'express';
 import process from 'process';
 
@@ -8,14 +9,16 @@ const staticFolder = 'client';
 
 const app = express();
 
-// Serve static website files
-app.use(express.static(staticFolder));
+// Use body-parser to process form data
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Import API routes
 app.use('/api', apiRoutes);
 
-// Define function which starts Nodejs server
-async function bootServer() {
+// Serve static website files
+app.use(express.static(staticFolder));
+
+async function main() {
   try {
     app.listen(port, async () => {
       console.log(`Listening on: http//localhost:${port}`);
@@ -26,4 +29,4 @@ async function bootServer() {
 }
 
 // Start Nodejs server
-bootServer();
+main();
