@@ -12,24 +12,30 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/main.js" type="module"></script>
+    <script src="js/dash.js" type="module"></script>
   </head>
   <body>
     <div class="hero is-small">
       <div class="hero-body">
         <div class="container has-text-centered">
           <p class="title is-1 is-spaced">Public Safety Dashboard</p>
-          <p id="view-label" class="subtitle is-4">...</p>
+          <p id="js-view-label" class="subtitle is-4">...</p>
         </div>
       </div>
       <div class="hero-foot">
         <div class="container has-text-centered has-text-weight-semibold">
           <p>
             Hosted by the
-            <a href="https://silverspringjustice.wordpress.com/"
+            <a
+              href="https://silverspringjustice.wordpress.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               >Silver Spring Justice Coalition</a
             >, this page is a private frontend to Montgomery County's
-            <a href="https://countystat.shinyapps.io/rps_app/"
+            <a
+              href="https://countystat.shinyapps.io/rps_app/"
+              target="_blank"
+              rel="noopener noreferrer"
               >Public Safety Dashboard</a
             >.
           </p>
@@ -37,38 +43,69 @@
       </div>
     </div>
     <div class="section">
-      <div class="container is-flex justify-content-between">
-        <button
-          id="tf-recs-nav"
-          class="button is-primary button-word-wrap"
-        ></button>
-        <button
-          id="mpaa-nav"
-          class="button is-primary button-word-wrap"
-        ></button>
-        <button
-          id="mcpd-audit-nav"
-          class="button is-primary button-word-wrap"
-        ></button>
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <button
+              id="js-view-nav__tf-recs"
+              class="button is-primary full-button--wrapped"
+            ></button>
+          </div>
+          <div class="column">
+            <button
+              id="js-view-nav__mpaa"
+              class="button is-primary full-button--wrapped"
+            ></button>
+          </div>
+          <div class="column">
+            <button
+              id="js-view-nav__mcpd-audit"
+              class="button is-primary full-button--wrapped"
+            ></button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="section pt-3 pb-2">
-      <div class="container is-max-desktop">
-        <input type="text" id="search" class="input" placeholder="Search" />
+      <div class="container">
+        <div class="columns">
+          <div class="column is-2">
+            <button
+              id="js-show-selected"
+              class="button is-danger is-outlined full-button--wrapped"
+            >
+              Show Selected
+            </button>
+          </div>
+          <div class="column">
+            <input
+              type="text"
+              id="js-table-search"
+              class="input"
+              placeholder="Search"
+            />
+          </div>
+          <div class="column is-2">
+            <button
+              id="js-share-url"
+              class="button is-primary is-light full-button--wrapped"
+            >
+              Share
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="section">
       <div class="container is-fluid">
         <div class="table-container">
-          <table id="data" class="table is-hoverable is-striped">
-            <thead>
-              <tr></tr>
-            </thead>
+          <table id="js-results-table" class="table is-hoverable is-striped">
+            <thead></thead>
             <tbody></tbody>
           </table>
         </div>
       </div>
-      <div id="progress" class="columns">
+      <div id="js-spinner" class="columns">
         <div class="column is-one-fifth is-offset-two-fifths">
           <progress class="progress is-primary is-small" max="100"></progress>
         </div>

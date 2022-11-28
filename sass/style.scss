@@ -1,20 +1,39 @@
-// Override Bulma variables
+/**
+ * Override Bulma's global variables.
+ * See Bulma documentation for details:
+ * https://bulma.io/documentation/customize/variables/
+ */
 $primary: #0d6efd;
-
-.button-word-wrap {
-  width: 33%;
-  height: auto;
-  white-space: normal;
-}
+$progress-indeterminate-duration: 0.75s;
 
 /**
  * Import only what is needed from Bulma, reducing filesize of final CSS.
- * See 'node_modules/bulma/bulma.sass' for per-directory import order.
+ * See 'node_modules/bulma/bulma.sass' for reference import order.
  */
 @import '../node_modules/bulma/sass/utilities/_all.sass';
 @import '../node_modules/bulma/sass/base/_all.sass';
 @import '../node_modules/bulma/sass/elements/_all.sass';
 @import '../node_modules/bulma/sass/form/shared.sass';
 @import '../node_modules/bulma/sass/form/input-textarea.sass';
+@import '../node_modules/bulma/sass/grid/_all.sass';
 @import '../node_modules/bulma/sass/helpers/_all.sass';
 @import '../node_modules/bulma/sass/layout/_all.sass';
+
+/**
+ * Custom CSS
+ */
+table input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+}
+
+// TODO: Consolidate and rename full-button classes
+.full-button {
+  width: 100%;
+  height: 100%;
+}
+
+.full-button--wrapped {
+  @extend .full-button;
+  white-space: normal;
+}

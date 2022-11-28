@@ -1,48 +1,34 @@
 // Fetch data from API endpoint
-export async function getData(endpoint, options = {}) {
-  const resp = await fetch(endpoint, options);
-  const data = await resp.json();
-  return data;
+// export async function fetchJSON(endpoint, options = {}) {
+//   const resp = await fetch(endpoint, options);
+//   const data = await resp.json();
+//   return data;
+// }
+
+/**
+ * Copy text data to the user's clipboard, first attempting with the synchronous
+ * clipboard API then falling back to the now deprecated execCommand().
+ * @param {string} string Text intended for clipboard
+ */
+export function copyToClipboard(string) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(string);
+  } else {
+    const elem = document.createElement('textarea');
+    elem.textContent = string;
+    document.body.appendChild(elem);
+    elem.select();
+    document.execCommand('copy');
+    document.body.removeChild(elem);
+  }
+  console.log(`Copied '${string}' to clipboard`);
 }
 
-// Get parameters from URL string
-export function getURLParams() {
-  return new URLSearchParams(window.location.search);
-}
-
-// Populate the headers of an HTML table with the given labels
-export function populateTableHeaders(table, labels) {
-  const headers = table.querySelector('thead > tr');
-  headers.innerHTML = '';
-  labels.forEach((item) => {
-    headers.innerHTML += `<th>${item}</th>`;
-  });
-}
-
-// Populate the body of an HTML table with JSON data
-export function populateTableBody(table, data) {
-  const body = table.querySelector('tbody');
-  body.innerHTML = '';
-  data.forEach((row) => {
-    const rowHTML = [];
-    Object.keys(row).forEach((field) => {
-      rowHTML.push(`<td>${row[field]}</td>`);
-    });
-    body.innerHTML += `<tr>${rowHTML.join(' ')}</tr>`;
-  });
-}
-
-// Search for term across all rows and fields of a dataset
-export function searchRows(query, data) {
-  const results = [];
-  data.forEach((row) => {
-    Object.keys(row).every((key) => {
-      if (String(row[key]).includes(query)) {
-        results.push(row);
-        return false;
-      }
-      return true;
-    });
-  });
-  return results;
+// TODO: Remove unneeded sleep() function
+/**
+ * Sleep async execution for the specified duration.
+ * @param {int} value Sleep duration in seconds
+ */
+export async function sleep(value) {
+  await new Promise((r) => setTimeout(r, value));
 }
