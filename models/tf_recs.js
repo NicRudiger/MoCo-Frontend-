@@ -4,7 +4,7 @@
 
 export default (sequelize, types) => {
   const tf_recs = sequelize.define('tf_recs', {
-    tf_recs_id: {
+    id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,

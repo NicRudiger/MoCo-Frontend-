@@ -4,7 +4,7 @@
 
 export default (sequelize, types) => {
   const mpaa = sequelize.define('mpaa', {
-    mpaa_id: {
+    id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,

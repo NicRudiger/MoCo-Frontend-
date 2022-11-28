@@ -4,17 +4,18 @@
 
 export default (sequelize, types) => {
   const mpaa_history = sequelize.define('mpaa_history', {
-    history_id: {
+    id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
+      autoIncrement: true,
     },
     history_date: {
       type: types.DATE,
       allowNull: false,
     },
-    mpaa_id: {
+    fid: {
       type: types.INTEGER,
       allowNull: false,
     },

@@ -4,20 +4,21 @@
 
 export default (sequelize, types) => {
   const tf_recs_comments = sequelize.define('tf_recs_comments', {
-    comment_id: {
+    id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
+      autoIncrement: true,
     },
-    tf_recs_id: {
+    fid: {
       type: types.INTEGER,
       allowNull: false,
     },
-    body: {
+    name: {
       type: types.STRING,
     },
-    name: {
+    body: {
       type: types.STRING,
     },
   });

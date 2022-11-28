@@ -4,17 +4,18 @@
 
 export default (sequelize, types) => {
   const tf_recs_history = sequelize.define('tf_recs_history', {
-    history_id: {
+    id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
+      autoIncrement: true,
     },
     history_date: {
       type: types.DATE,
       allowNull: false,
     },
-    tf_recs_id: {
+    fid: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,

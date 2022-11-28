@@ -4,7 +4,7 @@
 
 export default (sequelize, types) => {
   const mcpd_audit = sequelize.define('mcpd_audit', {
-    audit_id: {
+    id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,

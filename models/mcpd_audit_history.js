@@ -4,17 +4,18 @@
 
 export default (sequelize, types) => {
   const mcpd_audit_history = sequelize.define('mcpd_audit_history', {
-    history_id: {
+    id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
+      autoIncrement: true,
     },
     history_date: {
       type: types.DATE,
       allowNull: false,
     },
-    audit_id: {
+    fid: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,

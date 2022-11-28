@@ -4,20 +4,21 @@
 
 export default (sequelize, types) => {
   const mpaa_comments = sequelize.define('mpaa_comments', {
-    comment_id: {
+    id: {
       type: types.INTEGER,
       allowNull: false,
       unique: true,
       primaryKey: true,
+      autoIncrement: true,
     },
-    mpaa_id: {
+    fid: {
       type: types.INTEGER,
       allowNull: false,
     },
-    body: {
+    name: {
       type: types.STRING,
     },
-    name: {
+    body: {
       type: types.STRING,
     },
   });
