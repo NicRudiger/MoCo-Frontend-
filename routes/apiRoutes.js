@@ -20,12 +20,12 @@ router.get('/mcpd_audit', async (req, res) => {
   }
 });
 
-// Fetch all rows from 'mcpd_audit_history' table that have the given 'audit_id'
-router.get('/mcpd_audit_history/:audit_id', async (req, res) => {
+// Fetch all rows from 'mcpd_audit_history' table that have the given 'id'
+router.get('/mcpd_audit_history/:id', async (req, res) => {
   try {
     const data = await db.mcpd_audit_history.findAll({
       where: {
-        audit_id: req.params.audit_id,
+        id: req.params.id,
       },
     });
     res.json(data);
@@ -46,12 +46,12 @@ router.get('/mpaa', async (req, res) => {
   }
 });
 
-// Fetch all rows from 'mpaa_history' table that have the given 'mpaa_id'
-router.get('/mpaa_history/:mpaa_id', async (req, res) => {
+// Fetch all rows from 'mpaa_history' table that have the given 'id'
+router.get('/mpaa_history/:id', async (req, res) => {
   try {
     const data = await db.mpaa_history.findAll({
       where: {
-        mpaa_id: req.params.mpaa_id,
+        id: req.params.id,
       },
     });
     res.json(data);
@@ -72,12 +72,12 @@ router.get('/tf_recs', async (req, res) => {
   }
 });
 
-// Fetch all rows from 'tf_recs_history' table that have the given 'tf_recs_id'
-router.get('/tf_recs_history/:tf_recs_id', async (req, res) => {
+// Fetch all rows from 'tf_recs_history' table that have the given 'id'
+router.get('/tf_recs_history/:id', async (req, res) => {
   try {
     const data = await db.tf_recs_history.findAll({
       where: {
-        tf_recs_id: req.params.tf_recs_id,
+        id: req.params.id,
       },
     });
     res.json(data);
@@ -98,7 +98,7 @@ router.post('/comment', async (req, res) => {
 
     if (table == 'mcpd_audit') {
       await db.mcpd_audit_comments.create({
-        audit_id: id,
+        id: id,
         name: name,
         body: body,
       });
