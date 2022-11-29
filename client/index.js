@@ -118,6 +118,7 @@ async function main() {
   // Set active view, falling back to the default if not specified in URL params
   let viewID = URLParams.get(viewParam);
   if (!Object.keys(views).includes(viewID)) viewID = defaultViewID;
+  // TODO: Use URL-safe encoding for view parameter
   const view = views[viewID];
 
   // Set page title
@@ -151,7 +152,7 @@ async function main() {
   buildTableBody(resultsTable, view.mapping, view.data);
 
   // Hide spinner element
-  const spinner = document.querySelector('#js-spinner');
+  const spinner = document.querySelector('#js-results-spinner');
   spinner.style.display = 'none';
 
   // Configure search bar
