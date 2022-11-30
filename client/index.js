@@ -1,57 +1,6 @@
 import * as utils from './utils.js';
 import { views } from './views.js';
 
-function buildTableHeader(table, mapping) {
-  function createHeading(text) {
-    const heading = document.createElement('th');
-    heading.textContent = text;
-    return heading;
-  }
-
-  const head = table.querySelector('thead');
-  const headFrag = document.createDocumentFragment();
-  const row = document.createElement('tr');
-  row.appendChild(createHeading('Selected'));
-  Object.keys(mapping).forEach((id) => {
-    row.appendChild(createHeading(mapping[id]));
-  });
-  headFrag.appendChild(row);
-  head.textContent = '';
-  head.appendChild(headFrag);
-}
-
-function buildTableBody(table, mapping, data) {
-  const body = table.querySelector('tbody');
-  const bodyFrag = document.createDocumentFragment();
-  data.forEach((entry) => {
-    const row = document.createElement('tr');
-    row.setAttribute('data-result-id', entry.id);
-    // Add checkbox to beginning of row
-    const checkboxCell = document.createElement('td');
-    const checkbox = document.createElement('input');
-    checkbox.setAttribute('type', 'checkbox');
-    checkboxCell.appendChild(checkbox);
-    // Don't load details page when checkbox is clicked
-    checkboxCell.onclick = (e) => {
-      e.stopPropagation();
-    };
-    row.appendChild(checkboxCell);
-    // Add cells and data according to view mapping
-    Object.keys(mapping).forEach((id) => {
-      // Add event to load details page when row is left clicked
-      row.onclick = () => {
-        window.location.href = `/details?v=null&r=null`;
-      };
-      const cell = document.createElement('td');
-      cell.textContent = entry[id];
-      row.appendChild(cell);
-    });
-    bodyFrag.appendChild(row);
-  });
-  body.textContent = '';
-  body.appendChild(bodyFrag);
-}
-
 function hideCheckedRows(table) {
   const ids = [];
   const body = table.querySelector('tbody');
@@ -130,11 +79,11 @@ async function main() {
 
   // Configure view navigation buttons
   Object.keys(views).forEach((key) => {
-    const CSSID = views[key].CSSID;
-    const id = `#js-view-nav__${CSSID}`;
+    const viewTag = views[key].tag;
+    const id = `#js-view-nav__${viewTag}`;
     const navButton = document.querySelector(id);
     // Disable button if it's for the active view
-    if (view.CSSID == CSSID) navButton.setAttribute('disabled', '');
+    if (view.tag == viewTag) navButton.setAttribute('disabled', '');
     navButton.textContent = views[key].title;
     navButton.addEventListener('click', () => {
       const newParams = new URLSearchParams();
@@ -144,12 +93,15 @@ async function main() {
   });
 
   // Load data from API
-  await view.load();
+  const cacheSupported = utils.checkLocalStorage();
+  if (cacheSupported === true) view.refreshCache();
+  const data = await view.getData();
+  if (cacheSupported === true && view.getCache() === null) view.cache(data);
 
   // Populate table with view data
   const resultsTable = document.querySelector('#js-results-table');
-  buildTableHeader(resultsTable, view.mapping);
-  buildTableBody(resultsTable, view.mapping, view.data);
+  utils.buildTableHeader(resultsTable, view.mapping);
+  utils.buildTableBody(resultsTable, view.mapping, data);
 
   // Hide spinner element
   const spinner = document.querySelector('#js-results-spinner');
@@ -160,12 +112,12 @@ async function main() {
   let initialQuery = URLParams.get(queryParam);
   let query = '';
   let prevSearchQuery = '';
-  let results = view.data;
+  let results = data;
   searchBar.addEventListener('keyup', () => {
     query = searchBar.value;
     if (query == '') {
       // If the query is empty, skip running the actual search
-      results = view.data;
+      results = data;
     } else if (query.includes(prevSearchQuery) && prevSearchQuery != '') {
       /**
        * If the previous query is a substring of the current query, our results
@@ -180,11 +132,11 @@ async function main() {
        * assumptions about our result set and must search through the entire
        * dataset to find matching rows.
        */
-      results = searchRows(view.data, view.mapping, query);
+      results = searchRows(data, view.mapping, query);
     }
     // Don't rebuild the table if our query hasn't actually changed
     if (query != prevSearchQuery) {
-      buildTableBody(resultsTable, view.mapping, results);
+      utils.buildTableBody(resultsTable, view.mapping, results);
     }
     prevSearchQuery = query;
   });
