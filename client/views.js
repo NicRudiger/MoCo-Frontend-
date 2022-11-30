@@ -82,7 +82,7 @@ const historyViews = {
       history_date: 'Date of Change',
       action_id: 'Action ID',
       focus_area: 'Focus Area',
-      tf_recs: 'RPS TF Recommendation',
+      tf_rec: 'RPS TF Recommendation',
       action: 'Action',
       parties_responsible: 'Parties Responsible',
       progress: 'Progress',
@@ -93,7 +93,7 @@ const historyViews = {
   mpaa_history: new View('mpaa_history', 'Maryland Police Accountability Act', {
     history_date: 'Date of Change',
     focus_area: 'Focus Area',
-    rps_recommendation: 'RPS Recommendation',
+    rps_rec: 'RPS Recommendation',
     action: 'Action',
     parties_responsible: 'Parties Responsible',
     progress: 'Progress',
