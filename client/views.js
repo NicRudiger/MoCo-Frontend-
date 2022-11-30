@@ -46,7 +46,7 @@ const views = {
   tf_recs: new View('tf_recs', 'RPS Task Force Recommendations', {
     action_id: 'Action ID',
     focus_area: 'Focus Area',
-    tf_recs: 'RPS TF Recommendation',
+    tf_rec: 'RPS TF Recommendation',
     action: 'Action',
     parties_responsible: 'Parties Responsible',
     progress: 'Progress',
@@ -55,7 +55,7 @@ const views = {
   }),
   mpaa: new View('mpaa', 'Maryland Police Accountability Act', {
     focus_area: 'Focus Area',
-    rps_recommendation: 'RPS Recommendation',
+    rps_rec: 'RPS Recommendation',
     action: 'Action',
     parties_responsible: 'Parties Responsible',
     progress: 'Progress',
