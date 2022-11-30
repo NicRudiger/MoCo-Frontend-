@@ -11,28 +11,13 @@ class View {
 
   async getData(useCache = false) {
     let data = null;
-    if (useCache === true) data = this.getCache();
+    if (useCache === true) {
+      const cache = this.getCache();
+      if (cache !== null) data = cache.value;
+    }
     if (data === null) data = await utils.fetchJSON(`/api/${this.id}`);
     return data;
   }
-
-  // async getHistory(id, useCache = false) {
-  //   let data;
-  //   if (useCache === true) data = this.getCachedData();
-  //   if (data === null) {
-  //     data = await utils.fetchJSON(`/api/${this.id}_history/${id}`);
-  //   }
-  //   return data;
-  // }
-
-  // async getComments(id, useCache = false) {
-  //   let data;
-  //   if (useCache === true) data = this.getCachedData();
-  //   if (data === null) {
-  //     data = await utils.fetchJSON(`/api/${this.id}_comments/${id}`);
-  //   }
-  //   return data;
-  // }
 
   cache(data, ttl = 10000) {
     const date = new Date();
