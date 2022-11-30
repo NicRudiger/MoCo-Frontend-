@@ -95,7 +95,7 @@ async function main() {
   // Load data from API
   const cacheSupported = utils.checkLocalStorage();
   if (cacheSupported === true) view.refreshCache();
-  const data = await view.getData();
+  const data = await view.getData(cacheSupported);
   if (cacheSupported === true && view.getCache() === null) view.cache(data);
 
   // Populate table with view data
