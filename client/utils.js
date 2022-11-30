@@ -11,16 +11,6 @@ export async function fetchJSON(endpoint, opts = {}) {
 }
 
 /**
- * Get a random integer between min (inclusive) and max (exclusive).
- * @param {*} min
- * @param {*} max
- * @returns
- */
-export function randomInt(min = 0, max = 100) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-/**
  * Check if localStorage API is accessible.
  * @returns
  */
