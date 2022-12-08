@@ -39,9 +39,11 @@ function checkRows(table, ids) {
 
 function searchRows(data, mapping, query) {
   const results = [];
+  const normQuery = query.toLowerCase();
   data.forEach((row) => {
     Object.keys(mapping).every((id) => {
-      if (String(row[id]).includes(query)) {
+      const normField = String(row[id]).toLowerCase();
+      if (normField.includes(normQuery)) {
         results.push(row);
         return false;
       }
