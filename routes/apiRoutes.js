@@ -20,18 +20,33 @@ router.get('/mcpd_audit', async (req, res) => {
   }
 });
 
-// Fetch all rows from 'mcpd_audit_history' table that have the given 'id'
-router.get('/mcpd_audit_history/:id', async (req, res) => {
+// Fetch all rows from 'mcpd_audit_history' table that have the given 'fid'
+router.get('/mcpd_audit_history/:fid', async (req, res) => {
   try {
     const data = await db.mcpd_audit_history.findAll({
       where: {
-        id: req.params.id,
+        fid: req.params.fid,
       },
     });
     res.json(data);
   } catch (e) {
     console.error(e);
     res.send('Error in GET /mcpd_audit_history');
+  }
+});
+
+// Fetch all rows from 'mcpd_audit_comments' that have the given 'fid'
+router.get('/mcpd_audit_comments/:fid', async (req, res) => {
+  try {
+    const data = await db.mcpd_audit_comments.findAll({
+      where: {
+        fid: req.params.fid,
+      },
+    });
+    res.json(data);
+  } catch (e) {
+    console.error(e);
+    res.send('Error in GET /mcpd_audit_comments');
   }
 });
 
@@ -46,18 +61,33 @@ router.get('/mpaa', async (req, res) => {
   }
 });
 
-// Fetch all rows from 'mpaa_history' table that have the given 'id'
-router.get('/mpaa_history/:id', async (req, res) => {
+// Fetch all rows from 'mpaa_history' table that have the given 'fid'
+router.get('/mpaa_history/:fid', async (req, res) => {
   try {
     const data = await db.mpaa_history.findAll({
       where: {
-        id: req.params.id,
+        fid: req.params.fid,
       },
     });
     res.json(data);
   } catch (e) {
     console.error(e);
     res.send('Error in GET /mpaa_history');
+  }
+});
+
+// Fetch all rows from 'mpaa_comments' that have the given 'fid'
+router.get('/mpaa_comments/:fid', async (req, res) => {
+  try {
+    const data = await db.mpaa_comments.findAll({
+      where: {
+        fid: req.params.fid,
+      },
+    });
+    res.json(data);
+  } catch (e) {
+    console.error(e);
+    res.send('Error in GET /mpaa_comments');
   }
 });
 
@@ -72,18 +102,33 @@ router.get('/tf_recs', async (req, res) => {
   }
 });
 
-// Fetch all rows from 'tf_recs_history' table that have the given 'id'
-router.get('/tf_recs_history/:id', async (req, res) => {
+// Fetch all rows from 'tf_recs_history' table that have the given 'fid'
+router.get('/tf_recs_history/:fid', async (req, res) => {
   try {
     const data = await db.tf_recs_history.findAll({
       where: {
-        id: req.params.id,
+        fid: req.params.fid,
       },
     });
     res.json(data);
   } catch (e) {
     console.error(e);
     res.send('Error in GET /tf_recs_history');
+  }
+});
+
+// Fetch all rows from 'tf_recs_comments' that have the given 'fid'
+router.get('/tf_recs_comments/:fid', async (req, res) => {
+  try {
+    const data = await db.tf_recs_comments.findAll({
+      where: {
+        fid: req.params.fid,
+      },
+    });
+    res.json(data);
+  } catch (e) {
+    console.error(e);
+    res.send('Error in GET /tf_recs_comments');
   }
 });
 
