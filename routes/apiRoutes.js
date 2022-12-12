@@ -27,6 +27,7 @@ router.get('/mcpd_audit_history/:fid', async (req, res) => {
       where: {
         fid: req.params.fid,
       },
+      order: [['history_date', 'DESC']],
     });
     res.json(data);
   } catch (e) {
@@ -50,6 +51,27 @@ router.get('/mcpd_audit_comments/:fid', async (req, res) => {
   }
 });
 
+router.post('/mcpd_audit_new_comment', async (req, res) => {
+  try {
+    await db.mcpd_audit_comments
+      .create({
+        fid: req.body.fid,
+        name: req.body.name,
+        body: req.body.body,
+      })
+      .then((entry) => {
+        if (entry) {
+          res.send(entry);
+        } else {
+          res.status(400).send('Error inserting new row');
+        }
+      });
+  } catch (e) {
+    console.error(e);
+    res.send('Error in POST /mcpd_audit_new_comment');
+  }
+});
+
 // Fetch all rows from 'mpaa' table
 router.get('/mpaa', async (req, res) => {
   try {
@@ -68,6 +90,7 @@ router.get('/mpaa_history/:fid', async (req, res) => {
       where: {
         fid: req.params.fid,
       },
+      order: [['history_date', 'DESC']],
     });
     res.json(data);
   } catch (e) {
@@ -91,6 +114,27 @@ router.get('/mpaa_comments/:fid', async (req, res) => {
   }
 });
 
+router.post('/mpaa_new_comment', async (req, res) => {
+  try {
+    await db.mpaa_comments
+      .create({
+        fid: req.body.fid,
+        name: req.body.name,
+        body: req.body.body,
+      })
+      .then((entry) => {
+        if (entry) {
+          res.send(entry);
+        } else {
+          res.status(400).send('Error inserting new row');
+        }
+      });
+  } catch (e) {
+    console.error(e);
+    res.send('Error in POST /mpaa_new_comment');
+  }
+});
+
 // Fetch all rows from 'tf_recs' table
 router.get('/tf_recs', async (req, res) => {
   try {
@@ -109,6 +153,7 @@ router.get('/tf_recs_history/:fid', async (req, res) => {
       where: {
         fid: req.params.fid,
       },
+      order: [['history_date', 'DESC']],
     });
     res.json(data);
   } catch (e) {
@@ -132,27 +177,24 @@ router.get('/tf_recs_comments/:fid', async (req, res) => {
   }
 });
 
-// Insert new comment into one of the comments tables
-router.post('/comment', async (req, res) => {
+router.post('/tf_recs_new_comment', async (req, res) => {
   try {
-    console.log(req.body);
-    const table = req.body.table;
-    const id = req.body.id;
-    const name = req.body.name;
-    const body = req.body.body;
-
-    if (table == 'mcpd_audit') {
-      await db.mcpd_audit_comments.create({
-        id: id,
-        name: name,
-        body: body,
+    await db.tf_recs_comments
+      .create({
+        fid: req.body.fid,
+        name: req.body.name,
+        body: req.body.body,
+      })
+      .then((entry) => {
+        if (entry) {
+          res.send(entry);
+        } else {
+          res.status(400).send('Error inserting new row');
+        }
       });
-    }
-
-    res.sendStatus(200);
   } catch (e) {
     console.error(e);
-    res.send('Error in POST /comment');
+    res.send('Error in POST /tf_recs_new_comment');
   }
 });
 
