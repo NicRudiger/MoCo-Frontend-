@@ -5,6 +5,10 @@ class View {
     this.id = id;
     this.title = title;
     this.mapping = mapping;
+    this.historyMapping = Object.assign(
+      { history_date: 'Date of Change' },
+      this.mapping
+    );
     this.tag = id.replace(/_/g, '-');
     this.cacheKey = `com.ssjc.cache.${id}`;
   }
@@ -17,6 +21,27 @@ class View {
     }
     if (data === null) data = await utils.fetchJSON(`/api/${this.id}`);
     return data;
+  }
+
+  async getHistoricalData(fid) {
+    return await utils.fetchJSON(`/api/${this.id}_history/${fid}`);
+  }
+
+  async getCommentsData(fid) {
+    return await utils.fetchJSON(`/api/${this.id}_comments/${fid}`);
+  }
+
+  async newComment(fid, name, body) {
+    const opts = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fid: fid,
+        name: name,
+        body: body,
+      }),
+    };
+    return await utils.fetchJSON(`/api/${this.id}_new_comment`, opts);
   }
 
   cache(data, ttl = 10000) {
@@ -74,66 +99,4 @@ const views = {
   }),
 };
 
-const historyViews = {
-  tf_recs_history: new View(
-    'tf_recs_history',
-    'RPS Task Force Recommendations',
-    {
-      history_date: 'Date of Change',
-      action_id: 'Action ID',
-      focus_area: 'Focus Area',
-      tf_rec: 'RPS TF Recommendation',
-      action: 'Action',
-      parties_responsible: 'Parties Responsible',
-      progress: 'Progress',
-      timeline: 'Timeline',
-      priority: 'Priority',
-    }
-  ),
-  mpaa_history: new View('mpaa_history', 'Maryland Police Accountability Act', {
-    history_date: 'Date of Change',
-    focus_area: 'Focus Area',
-    rps_rec: 'RPS Recommendation',
-    action: 'Action',
-    parties_responsible: 'Parties Responsible',
-    progress: 'Progress',
-    timeline: 'Timeline',
-    priority: 'Priority',
-  }),
-  mcpd_audit_history: new View('mcpd_audit_history', 'MCPD Audit', {
-    history_date: 'Date of Change',
-    action_id: 'Action ID',
-    focus_area: 'Focus Area',
-    recommendations: 'Recommendations',
-    action: 'Action',
-    parties_responsible: 'Parties Responsible',
-    progress: 'Progress',
-    timeline: 'Timeline',
-    priority: 'Priority',
-  }),
-};
-
-const commentsViews = {
-  tf_recs_comments: new View(
-    'tf_recs_comments',
-    'RPS Task Force Recommendations',
-    {
-      name: 'Name',
-      body: 'Body',
-    }
-  ),
-  mpaa_comments: new View(
-    'mpaa_comments',
-    'Maryland Police Accountability Act',
-    {
-      name: 'Name',
-      body: 'Body',
-    }
-  ),
-  mcpd_audit_comments: new View('mcpd_audit_comments', 'MCPD Audit', {
-    name: 'Name',
-    body: 'Body',
-  }),
-};
-
-export { views, historyViews, commentsViews };
+export { views };

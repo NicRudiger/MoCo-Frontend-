@@ -12,6 +12,9 @@ const app = express();
 // Use body-parser to process form data
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Use Express to parse JSON data
+app.use(express.json());
+
 // Import API routes
 app.use('/api', apiRoutes);
 
