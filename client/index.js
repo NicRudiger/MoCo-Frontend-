@@ -1,6 +1,57 @@
 import * as utils from './utils.js';
 import { views } from './views.js';
 
+function buildTableHeader(table, mapping) {
+  function createHeading(text) {
+    const heading = document.createElement('th');
+    heading.textContent = text;
+    return heading;
+  }
+
+  const head = table.querySelector('thead');
+  const headFrag = document.createDocumentFragment();
+  const row = document.createElement('tr');
+  row.appendChild(createHeading('Selected'));
+  Object.keys(mapping).forEach((id) => {
+    row.appendChild(createHeading(mapping[id]));
+  });
+  headFrag.appendChild(row);
+  head.textContent = '';
+  head.appendChild(headFrag);
+}
+
+function buildTableBody(table, view, data) {
+  const body = table.querySelector('tbody');
+  const bodyFrag = document.createDocumentFragment();
+  data.forEach((entry) => {
+    const row = document.createElement('tr');
+    row.setAttribute('data-result-id', entry.id);
+    // Add checkbox to beginning of row
+    const checkboxCell = document.createElement('td');
+    const checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+    checkboxCell.appendChild(checkbox);
+    // Don't load details page when checkbox is clicked
+    checkboxCell.onclick = (e) => {
+      e.stopPropagation();
+    };
+    row.appendChild(checkboxCell);
+    // Add cells and data according to view mapping
+    Object.keys(view.mapping).forEach((id) => {
+      // Add event to load details page when row is left clicked
+      row.onclick = () => {
+        window.location.href = `/details?v=${view.id}&r=${entry.id}`;
+      };
+      const cell = document.createElement('td');
+      cell.textContent = entry[id];
+      row.appendChild(cell);
+    });
+    bodyFrag.appendChild(row);
+  });
+  body.textContent = '';
+  body.appendChild(bodyFrag);
+}
+
 function hideCheckedRows(table) {
   const ids = [];
   const body = table.querySelector('tbody');
@@ -53,6 +104,7 @@ function searchRows(data, mapping, query) {
   return results;
 }
 
+// TODO: Fix improper cache invalidation when navigating between views
 async function main() {
   /**
    * Define table views, establishing a mapping between table columns and their
@@ -102,8 +154,8 @@ async function main() {
 
   // Populate table with view data
   const resultsTable = document.querySelector('#js-results-table');
-  utils.buildTableHeader(resultsTable, view.mapping);
-  utils.buildTableBody(resultsTable, view.mapping, data);
+  buildTableHeader(resultsTable, view.mapping);
+  buildTableBody(resultsTable, view, data);
 
   // Hide spinner element
   const spinner = document.querySelector('#js-results-spinner');
@@ -138,7 +190,7 @@ async function main() {
     }
     // Don't rebuild the table if our query hasn't actually changed
     if (query != prevSearchQuery) {
-      utils.buildTableBody(resultsTable, view.mapping, results);
+      buildTableBody(resultsTable, view.mapping, results);
     }
     prevSearchQuery = query;
   });

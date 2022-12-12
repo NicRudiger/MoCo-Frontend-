@@ -10,6 +10,10 @@ export async function fetchJSON(endpoint, opts = {}) {
   return r.json();
 }
 
+export function localTimestamp(string) {
+  return new Date(string).toLocaleString();
+}
+
 /**
  * Check if localStorage API is accessible.
  * @returns
@@ -43,64 +47,4 @@ export function copyToClipboard(string) {
     document.body.removeChild(elem);
   }
   console.log(`Copied '${string}' to clipboard`);
-}
-
-export function buildTableHeader(table, mapping) {
-  function createHeading(text) {
-    const heading = document.createElement('th');
-    heading.textContent = text;
-    return heading;
-  }
-
-  const head = table.querySelector('thead');
-  const headFrag = document.createDocumentFragment();
-  const row = document.createElement('tr');
-  row.appendChild(createHeading('Selected'));
-  Object.keys(mapping).forEach((id) => {
-    row.appendChild(createHeading(mapping[id]));
-  });
-  headFrag.appendChild(row);
-  head.textContent = '';
-  head.appendChild(headFrag);
-}
-
-export function buildTableBody(table, mapping, data) {
-  const body = table.querySelector('tbody');
-  const bodyFrag = document.createDocumentFragment();
-  data.forEach((entry) => {
-    const row = document.createElement('tr');
-    row.setAttribute('data-result-id', entry.id);
-    // Add checkbox to beginning of row
-    const checkboxCell = document.createElement('td');
-    const checkbox = document.createElement('input');
-    checkbox.setAttribute('type', 'checkbox');
-    checkboxCell.appendChild(checkbox);
-    // Don't load details page when checkbox is clicked
-    checkboxCell.onclick = (e) => {
-      e.stopPropagation();
-    };
-    row.appendChild(checkboxCell);
-    // Add cells and data according to view mapping
-    Object.keys(mapping).forEach((id) => {
-      // Add event to load details page when row is left clicked
-      row.onclick = () => {
-        window.location.href = `/details?v=null&r=null`;
-      };
-      const cell = document.createElement('td');
-      cell.textContent = entry[id];
-      row.appendChild(cell);
-    });
-    bodyFrag.appendChild(row);
-  });
-  body.textContent = '';
-  body.appendChild(bodyFrag);
-}
-
-// TODO: Remove unneeded sleep() function
-/**
- * Sleep async execution for the specified duration.
- * @param {int} value Sleep duration in seconds
- */
-export async function sleep(value) {
-  await new Promise((r) => setTimeout(r, value));
 }
