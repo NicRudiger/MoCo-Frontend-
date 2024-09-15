@@ -1,0 +1,25 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "css-build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: css-build"
+		},
+		{
+			"type": "npm",
+			"script": "css-watch",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: css-watch"
+		},
+		{
+			"type": "npm",
+			"script": "start",
+			"problemMatcher": [],
+			"label": "npm: start"
+		}
+	]
+}
